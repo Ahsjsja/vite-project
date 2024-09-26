@@ -11,26 +11,17 @@ function PaginaPerfil() {
     email: "",
     telefone: "",
     senha: "",
-    fotoPerfil: null,
+   
   });
   const [errors, setErrors] = useState({});
-  const [previewImage, setPreviewImage] = useState(null);
-
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      fotoPerfil: file,
-    });
-    setPreviewImage(URL.createObjectURL(file)); 
-  };
-
+ 
   const validateForm = () => {
     let newErrors = {};
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
@@ -152,25 +143,7 @@ function PaginaPerfil() {
               className="perfil-input"
             />
           </div>
-
-          {/* Campo para upload da imagem de perfil */}
-          <div className="perfil-field">
-            <label>Foto de Perfil:</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="perfil-input"
-            />
-          </div>
-
-          {/* Exibir a imagem de pré-visualização */}
-          {previewImage && (
-            <div className="perfil-preview">
-              <img src={previewImage} alt="Pré-visualização da Foto de Perfil" className="perfil-foto" />
-            </div>
-          )}
-
+          
           <button type="submit" className="perfil-button">
             Atualizar Perfil
           </button>
