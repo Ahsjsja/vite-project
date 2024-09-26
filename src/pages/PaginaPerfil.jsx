@@ -152,6 +152,25 @@ function PaginaPerfil() {
               className="perfil-input"
             />
           </div>
+
+          {/* Campo para upload da imagem de perfil */}
+          <div className="perfil-field">
+            <label>Foto de Perfil:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="perfil-input"
+            />
+          </div>
+
+          {/* Exibir a imagem de pré-visualização */}
+          {previewImage && (
+            <div className="perfil-preview">
+              <img src={previewImage} alt="Pré-visualização da Foto de Perfil" className="perfil-foto" />
+            </div>
+          )}
+
           <button type="submit" className="perfil-button">
             Atualizar Perfil
           </button>
