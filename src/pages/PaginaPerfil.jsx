@@ -14,12 +14,17 @@ function PaginaPerfil() {
    
   });
   const [errors, setErrors] = useState({});
-  
+  const [previewImage, setPreviewImage] = useState(null);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setPreviewImage(URL.createObjectURL(file));
   };
  
   const validateForm = () => {
@@ -76,6 +81,27 @@ function PaginaPerfil() {
           </Link>
         </div>
       </header>
+
+      <div className="perfil-avatar-container">
+        <div className="perfil-avatar">
+          {previewImage ? (
+            <img src={previewImage} alt="Foto de Perfil" className="perfil-avatar-img" />
+          ) : (
+            <div className="perfil-avatar-placeholder">
+              <i className="fas fa-user-circle"></i>
+            </div>
+          )}
+        </div>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="perfil-upload-btn"
+        />
+        <label className="perfil-upload-label">
+          <i className="fas fa-camera"></i> Alterar Foto de Perfil
+        </label>
+      </div>
 
       <div className="perfil-form-container">
         <h2 className="perfil-title">MEU PERFIL</h2>
