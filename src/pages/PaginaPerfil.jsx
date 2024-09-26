@@ -11,14 +11,24 @@ function PaginaPerfil() {
     email: "",
     telefone: "",
     senha: "",
+    fotoPerfil: null,
   });
   const [errors, setErrors] = useState({});
+  const [previewImage, setPreviewImage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({
+      ...formData,
+      fotoPerfil: file,
+    });
+    setPreviewImage(URL.createObjectURL(file)); 
   };
 
   const validateForm = () => {
